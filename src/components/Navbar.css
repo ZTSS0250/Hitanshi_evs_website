@@ -1,0 +1,181 @@
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  height: var(--navbar-h);
+  transition: background .3s ease, box-shadow .3s ease;
+}
+.navbar.scrolled {
+  background: rgba(7,9,15,.93);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 1px 0 rgba(255,255,255,.05), 0 4px 20px rgba(0,0,0,.4);
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  height: var(--navbar-h);
+  gap: 2rem;
+}
+
+/* ── Logo ── */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  flex-shrink: 0;
+}
+.logo-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  background: var(--gradient);
+  border-radius: 9px;
+  color: #fff;
+  font-size: 1rem;
+}
+.logo-text { display:flex; flex-direction:column; line-height:1.1; }
+.logo-main {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.08rem;
+  letter-spacing: -.02em;
+}
+.logo-sub {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: .62rem;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: .12em;
+}
+
+/* ── Nav links ── */
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: .15rem;
+  flex: 1;
+  justify-content: center;
+}
+.nav-link {
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: .88rem;
+  padding: .4rem .85rem;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition);
+  position: relative;
+}
+.nav-link:hover { color: var(--text-primary); }
+.nav-link.active { color: var(--text-primary); }
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: .85rem; right: .85rem;
+  height: 2px;
+  background: var(--gradient);
+  border-radius: var(--radius-full);
+}
+
+/* ── CTA ── */
+.navbar-cta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+.navbar-phone {
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+  color: var(--text-secondary);
+  font-size: .82rem;
+  font-weight: 500;
+  transition: color var(--transition);
+}
+.navbar-phone:hover { color: var(--green); }
+.navbar-phone svg { color: var(--green); font-size: .78rem; }
+
+/* ── Hamburger ── */
+.hamburger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 38px; height: 38px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+.hamburger:hover { border-color: var(--green); color: var(--green); }
+
+/* ── Mobile menu ── */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: var(--navbar-h); left: 0; right: 0; bottom: 0;
+  background: var(--bg-primary);
+  padding: 1.5rem;
+  flex-direction: column;
+  gap: 1.5rem;
+  transform: translateX(100%);
+  transition: transform .3s ease;
+  overflow-y: auto;
+  z-index: 999;
+}
+.mobile-menu.open { transform: translateX(0); }
+
+.mobile-links { display:flex; flex-direction:column; gap:.25rem; }
+.mobile-link {
+  display: block;
+  padding: .85rem 1rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  transition: var(--transition);
+}
+.mobile-link:hover { color:var(--text-primary); background:var(--bg-card); border-color:var(--border); }
+.mobile-link.active {
+  color: var(--green);
+  background: rgba(0,212,94,.06);
+  border-color: rgba(0,212,94,.28);
+}
+
+.mobile-footer {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.mobile-phone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  color: var(--text-secondary);
+  font-size: .9rem;
+  padding: .75rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  transition: var(--transition);
+}
+.mobile-phone:hover { color:var(--green); border-color:var(--green); }
+
+/* ── Responsive ── */
+@media (max-width:1024px) { .navbar-phone { display:none; } }
+@media (max-width:768px) {
+  .navbar-links, .navbar-cta { display:none; }
+  .hamburger { display:flex; }
+  .mobile-menu { display:flex; }
+}

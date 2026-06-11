@@ -1,0 +1,139 @@
+/* ── FAB trigger ── */
+.fab {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 998;
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+  background: var(--gradient);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: .8rem 1.25rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 20px var(--green-glow), 0 8px 32px rgba(0,0,0,.4);
+  transition: transform var(--transition), box-shadow var(--transition);
+  animation: pulse 2.5s ease-in-out infinite;
+}
+.fab:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 8px 30px rgba(0,212,94,.45), 0 12px 40px rgba(0,0,0,.5);
+  animation: none;
+}
+.fab-label { font-size: .85rem; letter-spacing: .03em; }
+
+/* ── Backdrop ── */
+.fab-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.6);
+  backdrop-filter: blur(4px);
+  z-index: 1001;
+  animation: fadeIn .2s ease;
+}
+
+/* ── Modal ── */
+.fab-modal {
+  position: fixed;
+  bottom: 6rem;
+  right: 2rem;
+  z-index: 1002;
+  width: min(380px, calc(100vw - 2rem));
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(0,212,94,.1);
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(.92) translateY(12px);
+  pointer-events: none;
+  transition: opacity .25s ease, transform .25s ease;
+}
+.fab-modal.open {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: auto;
+}
+
+/* ── Modal header ── */
+.fab-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 1.25rem 1.4rem 1rem;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(135deg, rgba(0,212,94,.06), rgba(0,102,255,.06));
+}
+.fab-modal-title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.fab-modal-sub { font-size: .8rem; color: var(--text-secondary); margin-top: .15rem; }
+
+.fab-close {
+  background: var(--bg-hover);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  width: 30px; height: 30px;
+  border-radius: var(--radius-sm);
+  display: flex; align-items:center; justify-content:center;
+  font-size: .85rem;
+  cursor: pointer;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+.fab-close:hover { color:var(--text-primary); border-color:var(--border-light); }
+
+/* ── Form ── */
+.fab-form { padding: 1.25rem 1.4rem; display:flex; flex-direction:column; gap:.9rem; }
+
+.form-group { display:flex; flex-direction:column; gap:.35rem; }
+.form-group label { font-size:.8rem; font-weight:600; color:var(--text-secondary); letter-spacing:.03em; }
+.form-group input,
+.form-group textarea,
+.form-group select {
+  background: var(--bg-hover);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  padding: .65rem .85rem;
+  font-size: .88rem;
+  transition: border-color var(--transition);
+  width: 100%;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder { color:var(--text-muted); }
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus { border-color: var(--green); box-shadow:0 0 0 3px rgba(0,212,94,.12); }
+.form-group.has-error input,
+.form-group.has-error textarea,
+.form-group.has-error select { border-color: #EF4444; }
+.field-error { font-size:.76rem; color:#EF4444; }
+
+.fab-actions { display:flex; gap:.65rem; margin-top:.25rem; }
+
+/* ── Success ── */
+.fab-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  gap: .6rem;
+  animation: scaleIn .3s ease;
+}
+.fab-success svg { font-size: 2.8rem; color: var(--green); }
+.fab-success h4 { font-family:var(--font-heading); font-size:1.1rem; font-weight:700; }
+.fab-success p  { font-size:.88rem; color:var(--text-secondary); }
+
+@media (max-width:480px) {
+  .fab { bottom:1.25rem; right:1.25rem; padding:.7rem 1rem; }
+  .fab-modal { bottom:5rem; right:1rem; }
+}

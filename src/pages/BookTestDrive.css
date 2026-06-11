@@ -1,0 +1,188 @@
+/* ══ BOOK TEST DRIVE PAGE ══ */
+
+.btd-header {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+}
+.btd-header-bg { position:absolute; inset:0; pointer-events:none; }
+.btd-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: .28;
+}
+.btd-orb-1 { width:380px; height:380px; background:radial-gradient(circle,#00D45E,transparent 70%); top:-120px; right:-60px; }
+.btd-orb-2 { width:340px; height:340px; background:radial-gradient(circle,#0066FF,transparent 70%); bottom:-100px; left:-40px; }
+
+.btd-body { padding-top:3rem; padding-bottom:5rem; }
+
+/* Layout */
+.btd-grid {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Form card */
+.btd-form-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+}
+.form-card-title {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1.75rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  color: var(--text-primary);
+}
+.form-card-icon { color:var(--green); font-size:1rem; }
+
+/* Form elements */
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+
+.form-group { display:flex; flex-direction:column; gap:.35rem; margin-bottom:1rem; }
+.form-group label {
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: .03em;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+.form-group label svg { color:var(--green); font-size:.78rem; }
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: var(--bg-hover);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  padding: .7rem .9rem;
+  font-size: .9rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  width: 100%;
+  appearance: none;
+}
+.form-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right .75rem center;
+  background-size: 16px;
+  padding-right: 2.2rem;
+}
+.form-group input::placeholder { color:var(--text-muted); }
+.form-group input:focus,
+.form-group select:focus { border-color:var(--green); box-shadow:0 0 0 3px rgba(0,212,94,.1); outline:none; }
+.form-group.has-error input,
+.form-group.has-error select { border-color:#EF4444; }
+.field-error { font-size:.76rem; color:#EF4444; }
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(.5) sepia(1) saturate(3) hue-rotate(90deg);
+  cursor: pointer;
+}
+
+.btd-submit {
+  width: 100%;
+  justify-content: center;
+  font-size: .97rem;
+  padding: .9rem 2rem;
+  margin-top: .5rem;
+  gap: .6rem;
+}
+
+/* Sidebar */
+.btd-sidebar { display:flex; flex-direction:column; gap:1.25rem; }
+
+.btd-info-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.btd-info-header {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  padding: 1.2rem 1.4rem;
+  background: linear-gradient(135deg,rgba(0,212,94,.08),rgba(0,102,255,.08));
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: .97rem;
+}
+.btd-info-header svg { color:var(--green); }
+.btd-info-list {
+  padding: 1.2rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+}
+.btd-info-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: .7rem;
+  font-size: .85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.btd-info-list li svg { color:var(--green); flex-shrink:0; margin-top:.2rem; font-size:.85rem; }
+.btd-info-list li a { color:var(--text-secondary); transition:color var(--transition); }
+.btd-info-list li a:hover { color:var(--green); }
+
+.btd-why-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem;
+}
+.btd-why-card h3 {
+  font-family: var(--font-heading);
+  font-size: .95rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.btd-why-list { display:flex; flex-direction:column; gap:.65rem; }
+.btd-why-list li {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font-size: .84rem;
+  color: var(--text-secondary);
+}
+.btd-why-list li svg { color:var(--green); font-size:.8rem; flex-shrink:0; }
+
+.btd-booked-badge {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  background: rgba(0,212,94,.08);
+  border: 1px solid rgba(0,212,94,.25);
+  border-radius: var(--radius-md);
+  padding: .75rem 1rem;
+  font-size: .83rem;
+  color: var(--green);
+  font-weight: 500;
+  animation: fadeInUp .3s ease;
+}
+.btd-booked-badge svg { flex-shrink:0; }
+
+/* Responsive */
+@media (max-width:900px) {
+  .btd-grid { grid-template-columns:1fr; }
+  .btd-sidebar { order:-1; }
+}
+@media (max-width:600px) {
+  .form-row { grid-template-columns:1fr; }
+  .btd-form-card { padding:1.4rem; }
+}
