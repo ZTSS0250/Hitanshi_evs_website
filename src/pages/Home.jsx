@@ -7,7 +7,7 @@ import {
 } from 'react-icons/fa'
 import { MdElectricScooter, MdSpeed, MdBatteryChargingFull } from 'react-icons/md'
 import { vehicles, testimonials, stats } from '../data/vehicles'
-import { HERO_BIKE, OFFER_BANNER } from '../assets/images/index'
+import { HERO_BIKE, OFFER_BANNER, VEHICLE_IMAGES } from '../assets/images/index'
 import './Home.css'
 
 /* ── Inline SVG scooter silhouette ── */
@@ -76,11 +76,21 @@ const ACCENT = ['#00D45E','#0066FF','#A855F7','#F59E0B','#06B6D4','#EF4444']
 
 function HomeVehicleCard({ vehicle, index }) {
   const color = ACCENT[index % ACCENT.length]
+  const vehicleImg = VEHICLE_IMAGES[vehicle.imageKey]
   return (
     <div className="hvc" style={{ '--accent': color }}>
       <div className="hvc-image">
         <span className="hvc-badge">{vehicle.category}</span>
-        <ScooterSVG color={color} />
+        {vehicleImg ? (
+          <img
+            src={vehicleImg}
+            alt={vehicle.name}
+            className="hvc-vehicle-img"
+            loading="lazy"
+          />
+        ) : (
+          <ScooterSVG color={color} />
+        )}
       </div>
       <div className="hvc-body">
         <h3 className="hvc-name">{vehicle.name}</h3>
@@ -183,7 +193,7 @@ export default function Home() {
               </div>
               <div className="showcase-pill pill-1">
                 <MdBatteryChargingFull style={{ color: 'var(--green)' }} />
-                <div><div className="pill-val">140 km</div><div className="pill-lbl">Max Range</div></div>
+                <div><div className="pill-val">90-140 km</div><div className="pill-lbl">Max Range</div></div>
               </div>
               <div className="showcase-pill pill-2">
                 <FaBolt style={{ color: 'var(--blue)' }} />

@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react'
 import { FaSearch, FaTimes, FaCheckCircle, FaBolt } from 'react-icons/fa'
 import { MdElectricScooter, MdSpeed, MdBatteryChargingFull } from 'react-icons/md'
 import { vehicles } from '../data/vehicles'
+import { VEHICLE_IMAGES } from '../assets/images/index'
 import { Link } from 'react-router-dom'
 import './Vehicles.css'
 
@@ -33,13 +34,23 @@ function ScooterSVG({ color = '#00D45E' }) {
 function VehicleCard({ vehicle }) {
   const [expanded, setExpanded] = useState(false)
   const c = vehicle.accentColor
+  const vehicleImg = VEHICLE_IMAGES[vehicle.imageKey]
 
   return (
     <div className="vc" style={{ '--c': c }}>
       {/* Image area */}
       <div className="vc-image">
         <span className="vc-badge">{vehicle.category}</span>
-        <ScooterSVG color={c} />
+        {vehicleImg ? (
+          <img
+            src={vehicleImg}
+            alt={vehicle.name}
+            className="vc-vehicle-img"
+            loading="lazy"
+          />
+        ) : (
+          <ScooterSVG color={c} />
+        )}
       </div>
 
       {/* Info */}

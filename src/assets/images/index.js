@@ -29,6 +29,10 @@ import gCustomer2  from './gallery/customer_2.png'
 import gCustomer3  from './gallery/customer_3.png'
 import gCustomer5  from './gallery/customer_5.png'
 import gCustomer6  from './gallery/customer_6.png'
+import vEevaZX     from './vehicles/1775646602_EEVA_ECO_ZX_Electric_Scooter.webp'
+import vEevaZXPlus from './vehicles/1775646603_Eeva_ZX+_Electric_Scooter.webp'
+import vGracyNew   from './vehicles/1780380431_Gracy.webp'
+import vGracyLittle from './vehicles/1775646603_Little_Gracy_Electric_Scooty.webp'
 
 // ── Logo ──────────────────────────────────────────────
 export const LOGO = logo
@@ -44,10 +48,10 @@ export const OFFER_BANNER = banner2
 export const VEHICLE_IMAGES = {
   'eeva-e':       null,
   'eeva-eco-lx':  null,
-  'eeva-eco-zx':  null,
-  'eeva-zx-plus': null,
-  'gracy-new':    null,
-  'gracy-little': null,
+  'eeva-eco-zx':  vEevaZX,
+  'eeva-zx-plus': vEevaZXPlus,
+  'gracy-new':    vGracyNew,
+  'gracy-little': vGracyLittle,
 }
 
 // ── Showroom photos (for future showroom section) ─────
