@@ -7,6 +7,7 @@ import {
 } from 'react-icons/fa'
 import { MdElectricScooter, MdSpeed, MdBatteryChargingFull } from 'react-icons/md'
 import { vehicles, testimonials, stats } from '../data/vehicles'
+import { HERO_BIKE, OFFER_BANNER } from '../assets/images/index'
 import './Home.css'
 
 /* ── Inline SVG scooter silhouette ── */
@@ -170,7 +171,15 @@ export default function Home() {
               <div className="showcase-ring r2" />
               <div className="showcase-ring r3" />
               <div className="showcase-scooter animate-float">
-                <ScooterSVG color="#00D45E" />
+                {HERO_BIKE ? (
+                  <img
+                    src={HERO_BIKE}
+                    alt="Zelio Electric Scooter"
+                    className="showcase-bike-img"
+                  />
+                ) : (
+                  <ScooterSVG color="#00D45E" />
+                )}
               </div>
               <div className="showcase-pill pill-1">
                 <MdBatteryChargingFull style={{ color: 'var(--green)' }} />
@@ -188,9 +197,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="scroll-hint">
-          <div className="scroll-dot-wrap"><div className="scroll-dot" /></div>
-        </div>
+
       </section>
 
       {/* ══════════ WHY CHOOSE US ══════════ */}
@@ -220,6 +227,21 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ══════════ OFFER BANNER ══════════ */}
+      {OFFER_BANNER && (
+        <section className="offer-banner-section">
+          <div className="container">
+            <Link to="/book-test-drive">
+              <img
+                src={OFFER_BANNER}
+                alt="Special Offer – Hitanshi EVS"
+                className="offer-banner-img"
+              />
+            </Link>
+          </div>
+        </section>
+      )}
 
       {/* ══════════ VEHICLES ══════════ */}
       <section className="featured-vehicles section-padding">

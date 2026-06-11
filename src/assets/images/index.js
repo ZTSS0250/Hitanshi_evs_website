@@ -3,35 +3,46 @@
  *
  * HOW TO ADD A REAL IMAGE:
  * 1. Place the file in the correct subfolder under src/assets/images/
- * 2. Add an import at the top:  import myImg from './subfolder/filename.jpg'
- * 3. Replace `null` with `myImg`
+ * 2. Add an import below and replace `null` with it.
  *
  * While an export is null, the component renders an SVG placeholder instead.
- * No broken image icons — the UI always looks complete.
  *
  * FOLDER MAP:
  *   logo/         → logo.png
- *   vehicles/     → eeva-e.jpg, eeva-eco-lx.jpg, eeva-eco-zx.jpg,
- *                   eeva-zx-plus.jpg, gracy-new.jpg, gracy-little.jpg
- *   showroom/     → showroom-1.jpg, showroom-2.jpg, showroom-3.jpg
- *   banners/      → hero-banner.jpg, offer-banner.jpg
- *   posters/      → poster-1.jpg, poster-2.jpg
- *   gallery/      → gallery-1.jpg … gallery-9.jpg
+ *   hero/         → hero-bike.png  (dedicated bike product shot, optional)
+ *   banners/      → banner_1.png (hero showcase), banner_2.png (offer section)
+ *   vehicles/     → eeva-e.jpg, eeva-eco-lx.jpg … (product shots, none yet)
+ *   showroom/     → showroom photos (none yet)
+ *   gallery/      → customer.png, customer_2/3/5/6.png, showroom.png
+ *   posters/      → poster_1.png, poster_2.png
  */
 
+// ── Imports ───────────────────────────────────────────
+import logo        from './logo/logo.png'
+import banner1     from './banners/banner_1.png'
+import banner2     from './banners/banner_2.png'
+import poster1     from './posters/poster_1.png'
+import poster2     from './posters/poster_2.png'
+import gShowroom   from './gallery/showroom.png'
+import gCustomer1  from './gallery/customer.png'
+import gCustomer2  from './gallery/customer_2.png'
+import gCustomer3  from './gallery/customer_3.png'
+import gCustomer5  from './gallery/customer_5.png'
+import gCustomer6  from './gallery/customer_6.png'
+
 // ── Logo ──────────────────────────────────────────────
-export const LOGO = null
-// When ready: import logo from './logo/logo.png'
+export const LOGO = logo
 
-// ── Banners ───────────────────────────────────────────
-export const HERO_BANNER  = null
-export const OFFER_BANNER = null
-// When ready: import heroBanner from './banners/hero-banner.jpg'
+// ── Hero bike showcase (right side of homepage hero) ──
+export const HERO_BIKE = banner1
 
-// ── Vehicle images ────────────────────────────────────
+// ── Offer / promo banner (homepage section) ───────────
+export const OFFER_BANNER = banner2
+
+// ── Vehicle product images ────────────────────────────
 // Keys must match the `imageKey` field in src/data/vehicles.js
 export const VEHICLE_IMAGES = {
-  'eeva-e':       null,   // → import eevaE from './vehicles/eeva-e.jpg'
+  'eeva-e':       null,
   'eeva-eco-lx':  null,
   'eeva-eco-zx':  null,
   'eeva-zx-plus': null,
@@ -39,24 +50,22 @@ export const VEHICLE_IMAGES = {
   'gracy-little': null,
 }
 
-// ── Showroom photos ───────────────────────────────────
+// ── Showroom photos (for future showroom section) ─────
 export const SHOWROOM_IMAGES = [
-  null,   // showroom-1.jpg
-  null,   // showroom-2.jpg
-  null,   // showroom-3.jpg
+  gShowroom,
+  null,
+  null,
 ]
 
-// ── Gallery items ─────────────────────────────────────
-// src: null = shows a placeholder tile (gradient + title label)
-// src: <import> = shows the real image with lightbox support
+// ── Gallery page items ────────────────────────────────
 export const GALLERY_ITEMS = [
-  { id: 1, src: null, title: 'Showroom Entrance',    category: 'showroom' },
-  { id: 2, src: null, title: 'Vehicle Display Area', category: 'showroom' },
-  { id: 3, src: null, title: 'Eeva E Display',       category: 'vehicles' },
-  { id: 4, src: null, title: 'Eeva ZX Plus',         category: 'vehicles' },
-  { id: 5, src: null, title: 'Customer Delivery',    category: 'events'   },
-  { id: 6, src: null, title: 'Team at Showroom',     category: 'showroom' },
-  { id: 7, src: null, title: 'Gracy New Launch',     category: 'events'   },
-  { id: 8, src: null, title: 'Promotional Poster',   category: 'showroom' },
-  { id: 9, src: null, title: 'Charging Demo',        category: 'events'   },
+  { id: 1, src: gShowroom,  title: 'Our Showroom',        category: 'showroom' },
+  { id: 2, src: poster1,    title: 'Special Offer',        category: 'showroom' },
+  { id: 3, src: poster2,    title: 'Promotional Offer',    category: 'showroom' },
+  { id: 4, src: gCustomer1, title: 'Happy Customer',       category: 'events'   },
+  { id: 5, src: gCustomer2, title: 'Customer Delivery',    category: 'events'   },
+  { id: 6, src: gCustomer3, title: 'Test Drive Experience',category: 'events'   },
+  { id: 7, src: gCustomer5, title: 'Customer Smiles',      category: 'events'   },
+  { id: 8, src: gCustomer6, title: 'At the Showroom',      category: 'events'   },
+  { id: 9, src: null,       title: 'Charging Demo',        category: 'events'   },
 ]

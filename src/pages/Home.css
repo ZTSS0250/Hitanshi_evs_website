@@ -102,8 +102,16 @@
 .r1 { width:420px; height:420px; animation: spin 25s linear infinite; border-color: rgba(0,212,94,.1); }
 .r2 { width:320px; height:320px; animation: spin 18s linear infinite reverse; border-color: rgba(0,102,255,.15); }
 .r3 { width:200px; height:200px; animation: spin 12s linear infinite; background: rgba(0,212,94,.03); border-color: rgba(0,212,94,.2); }
-.showcase-scooter { position:relative; z-index:1; width:300px; }
+.showcase-scooter { position:relative; z-index:1; width:320px; }
 .showcase-scooter .scooter-svg { width:100%; }
+.showcase-bike-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 0 32px rgba(0, 212, 94, 0.45))
+          drop-shadow(0 8px 24px rgba(0, 0, 0, 0.6));
+}
 
 .showcase-pill {
   position: absolute;
@@ -126,13 +134,7 @@
 .pill-3 { bottom:20px; left:-20px; }
 
 /* Scroll hint */
-.scroll-hint {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1;
-}
+
 .scroll-dot-wrap {
   width: 22px; height: 36px;
   border: 2px solid rgba(255,255,255,.2);
@@ -201,6 +203,24 @@
   transition: width .4s ease;
 }
 .feature-card:hover .feature-bar { width: 100%; }
+
+/* ── OFFER BANNER ── */
+.offer-banner-section {
+  padding: 0 0 3rem;
+}
+.offer-banner-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  transition: transform .3s ease, box-shadow .3s ease;
+  cursor: pointer;
+}
+.offer-banner-img:hover {
+  transform: scale(1.01);
+  box-shadow: 0 12px 40px rgba(0, 212, 94, 0.2);
+}
 
 /* ── VEHICLES GRID ── */
 .vehicles-grid {

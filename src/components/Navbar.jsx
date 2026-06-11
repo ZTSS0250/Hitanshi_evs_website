@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { FaBolt, FaBars, FaTimes, FaPhone, FaWhatsapp, FaImages } from 'react-icons/fa'
+import { FaBolt, FaBars, FaTimes, FaPhone, FaWhatsapp } from 'react-icons/fa'
 import { COMPANY } from '../config/companyInfo'
+import { LOGO } from '../assets/images/index'
 import './Navbar.css'
 
 const NAV_LINKS = [
@@ -38,11 +39,17 @@ export default function Navbar() {
 
         {/* Logo */}
         <Link to="/" className="navbar-logo">
-          <div className="logo-icon"><FaBolt /></div>
-          <div className="logo-text">
-            <span className="logo-main">Hitanshi</span>
-            <span className="logo-sub">EVS</span>
-          </div>
+          {LOGO ? (
+            <img src={LOGO} alt="Hitanshi EVS Logo" className="logo-img" />
+          ) : (
+            <>
+              <div className="logo-icon"><FaBolt /></div>
+              <div className="logo-text">
+                <span className="logo-main">Hitanshi</span>
+                <span className="logo-sub">EVS</span>
+              </div>
+            </>
+          )}
         </Link>
 
         {/* Desktop nav links */}

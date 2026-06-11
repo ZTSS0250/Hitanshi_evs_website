@@ -6,6 +6,7 @@ import {
 } from 'react-icons/fa'
 import { MdElectricScooter } from 'react-icons/md'
 import { COMPANY } from '../config/companyInfo'
+import { LOGO } from '../assets/images/index'
 import './Footer.css'
 
 const quickLinks = [
@@ -42,11 +43,17 @@ export default function Footer() {
           {/* Brand */}
           <div className="footer-brand">
             <Link to="/" className="footer-logo">
-              <div className="footer-logo-icon"><FaBolt /></div>
-              <div>
-                <span className="footer-logo-main">Hitanshi</span>
-                <span className="footer-logo-sub"> EVS</span>
-              </div>
+              {LOGO ? (
+                <img src={LOGO} alt="Hitanshi EVS Logo" className="footer-logo-img" />
+              ) : (
+                <>
+                  <div className="footer-logo-icon"><FaBolt /></div>
+                  <div>
+                    <span className="footer-logo-main">Hitanshi</span>
+                    <span className="footer-logo-sub"> EVS</span>
+                  </div>
+                </>
+              )}
             </Link>
             <p className="footer-brand-desc">
               Authorized Zelio E-Mobility franchise in Shajapur, Madhya Pradesh.
