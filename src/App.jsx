@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import Vehicles from './pages/Vehicles'
 import BookTestDrive from './pages/BookTestDrive'
 import ContactUs from './pages/ContactUs'
+import Gallery from './pages/Gallery'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -22,10 +23,11 @@ function App() {
         <Navbar />
         <main className="main-content">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/vehicles" element={<Vehicles />} />
+            <Route path="/"               element={<Home />} />
+            <Route path="/vehicles"       element={<Vehicles />} />
             <Route path="/book-test-drive" element={<BookTestDrive />} />
-            <Route path="/contact" element={<ContactUs />} />
+            <Route path="/contact"        element={<ContactUs />} />
+            <Route path="/gallery"        element={<Gallery />} />
           </Routes>
         </main>
         <Footer />

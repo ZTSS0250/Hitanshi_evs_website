@@ -5,13 +5,15 @@ import {
   FaWhatsapp, FaTwitter,
 } from 'react-icons/fa'
 import { MdElectricScooter } from 'react-icons/md'
+import { COMPANY } from '../config/companyInfo'
 import './Footer.css'
 
 const quickLinks = [
-  { to: '/',               label: 'Home' },
-  { to: '/vehicles',       label: 'All Vehicles' },
+  { to: '/',                label: 'Home' },
+  { to: '/vehicles',        label: 'All Vehicles' },
+  { to: '/gallery',         label: 'Gallery' },
   { to: '/book-test-drive', label: 'Book Test Drive' },
-  { to: '/contact',        label: 'Contact Us' },
+  { to: '/contact',         label: 'Contact Us' },
 ]
 
 const vehicleLinks = [
@@ -23,13 +25,14 @@ const vehicleLinks = [
   { to: '/vehicles', label: 'Gracy Little' },
 ]
 
-const socials = [
-  { icon: <FaFacebookF />, label: 'Facebook',  href: '#' },
-  { icon: <FaInstagram />, label: 'Instagram', href: '#' },
-  { icon: <FaWhatsapp />,  label: 'WhatsApp',  href: '#' },
-  { icon: <FaYoutube />,   label: 'YouTube',   href: '#' },
-  { icon: <FaTwitter />,   label: 'Twitter',   href: '#' },
+const SOCIAL_DEFS = [
+  { key: 'facebook',  icon: <FaFacebookF />, label: 'Facebook' },
+  { key: 'instagram', icon: <FaInstagram />, label: 'Instagram' },
+  { key: 'youtube',   icon: <FaYoutube />,   label: 'YouTube' },
+  { key: 'twitter',   icon: <FaTwitter />,   label: 'Twitter' },
 ]
+
+const primaryPhone = COMPANY.phones.find(p => p.primary)
 
 export default function Footer() {
   return (
@@ -50,11 +53,31 @@ export default function Footer() {
               Bringing clean, affordable electric vehicles to your doorstep.
             </p>
             <div className="footer-socials">
-              {socials.map(s => (
-                <a key={s.label} href={s.href} className="social-btn" aria-label={s.label} target="_blank" rel="noopener noreferrer">
-                  {s.icon}
-                </a>
-              ))}
+              <a
+                href={COMPANY.whatsapp.url}
+                className="social-btn"
+                aria-label="WhatsApp"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaWhatsapp />
+              </a>
+              {SOCIAL_DEFS.map(s => {
+                const href = COMPANY.social[s.key]
+                if (!href) return null
+                return (
+                  <a
+                    key={s.key}
+                    href={href}
+                    className="social-btn"
+                    aria-label={s.label}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {s.icon}
+                  </a>
+                )
+              })}
             </div>
           </div>
 
@@ -87,19 +110,24 @@ export default function Footer() {
             <ul className="footer-contact-list">
               <li>
                 <FaMapMarkerAlt className="contact-icon" />
-                <span>Hitanshi EVS, Near Main Market,<br />Shajapur – 465001,<br />Madhya Pradesh, India</span>
+                <span>{COMPANY.address.full}</span>
               </li>
-              <li>
-                <FaPhone className="contact-icon" />
-                <a href="tel:+917000000000">+91 70000 00000</a>
-              </li>
+              {COMPANY.phones.map(p => (
+                <li key={p.number}>
+                  <FaPhone className="contact-icon" />
+                  <a href={`tel:${p.number}`}>{p.display}</a>
+                </li>
+              ))}
               <li>
                 <FaEnvelope className="contact-icon" />
-                <a href="mailto:info@hitanshievs.in">info@hitanshievs.in</a>
+                <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
               </li>
               <li>
                 <FaClock className="contact-icon" />
-                <span>Mon–Sat: 9:00 AM – 7:00 PM<br />Sunday: 10:00 AM – 4:00 PM</span>
+                <span>
+                  {COMPANY.hours.weekdays.days}: {COMPANY.hours.weekdays.time}<br />
+                  {COMPANY.hours.sunday.days}: {COMPANY.hours.sunday.time}
+                </span>
               </li>
             </ul>
           </div>
@@ -109,7 +137,7 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="footer-bottom">
         <div className="container footer-bottom-inner">
-          <p>© 2026 Hitanshi EVS. All Rights Reserved.</p>
+          <p>© 2026 {COMPANY.name}. All Rights Reserved.</p>
           <p className="footer-partner">
             Authorized franchise partner of{' '}
             <span className="gradient-text" style={{ fontWeight: 700 }}>Zelio E-Mobility</span>

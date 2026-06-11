@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import {
   FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock,
-  FaPaperPlane, FaCheckCircle, FaBolt,
-  FaWhatsapp, FaFacebookF, FaInstagram,
+  FaPaperPlane, FaWhatsapp, FaFacebookF, FaInstagram,
 } from 'react-icons/fa'
+import { COMPANY } from '../config/companyInfo'
 import Toast from '../components/Toast'
 import './ContactUs.css'
 
@@ -19,34 +19,43 @@ function validate(form) {
   return e
 }
 
+const primaryPhone = COMPANY.phones.find(p => p.primary)
+
 const CONTACT_INFO = [
   {
     icon: <FaMapMarkerAlt />,
     label: 'Our Showroom',
-    value: 'Near Main Market, Shajapur – 465001, Madhya Pradesh, India',
+    value: COMPANY.address.full,
     color: '#00D45E',
   },
   {
     icon: <FaPhone />,
     label: 'Call Us',
-    value: '+91 70000 00000',
-    href: 'tel:+917000000000',
+    value: primaryPhone.display,
+    href: `tel:${primaryPhone.number}`,
     color: '#0066FF',
   },
   {
     icon: <FaEnvelope />,
     label: 'Email Us',
-    value: 'info@hitanshievs.in',
-    href: 'mailto:info@hitanshievs.in',
+    value: COMPANY.email,
+    href: `mailto:${COMPANY.email}`,
     color: '#00D45E',
   },
   {
     icon: <FaClock />,
     label: 'Business Hours',
-    value: 'Mon–Sat: 9:00 AM – 7:00 PM\nSunday: 10:00 AM – 4:00 PM',
+    value: `${COMPANY.hours.weekdays.days}: ${COMPANY.hours.weekdays.time}\n${COMPANY.hours.sunday.days}: ${COMPANY.hours.sunday.time}`,
     color: '#0066FF',
   },
 ]
+
+const SOCIAL_LINKS = [
+  { icon: <FaWhatsapp />,  label: 'WhatsApp',  href: COMPANY.whatsapp.url,      c: '#25D366' },
+  COMPANY.social.facebook  ? { icon: <FaFacebookF />, label: 'Facebook',  href: COMPANY.social.facebook,  c: '#1877F2' } : null,
+  COMPANY.social.instagram ? { icon: <FaInstagram />, label: 'Instagram', href: COMPANY.social.instagram, c: '#E1306C' } : null,
+  { icon: <FaPhone />,     label: 'Call Now',  href: `tel:${primaryPhone.number}`, c: '#00D45E' },
+].filter(Boolean)
 
 export default function ContactUs() {
   const [form, setForm]     = useState(INITIAL)
@@ -116,45 +125,58 @@ export default function ContactUs() {
 
         {/* ── Main grid ── */}
         <div className="contact-grid">
-          {/* Map placeholder */}
+          {/* Map section */}
           <div className="contact-map-section">
             <h2 className="contact-section-title">
               <FaMapMarkerAlt /> Find Us on Map
             </h2>
-            <div className="map-placeholder">
-              <div className="map-pin-wrap">
-                <div className="map-pin-icon">
-                  <FaMapMarkerAlt />
+
+            {COMPANY.maps.embedUrl ? (
+              <iframe
+                title="Hitanshi EVS Location on Google Maps"
+                src={COMPANY.maps.embedUrl}
+                className="map-iframe"
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            ) : (
+              <div className="map-placeholder">
+                <div className="map-pin-wrap">
+                  <div className="map-pin-icon">
+                    <FaMapMarkerAlt />
+                  </div>
+                  <p className="map-address">
+                    {COMPANY.name}<br />
+                    {COMPANY.address.line1}<br />
+                    {COMPANY.address.line2}, {COMPANY.address.state} – {COMPANY.address.pincode}
+                  </p>
+                  <a
+                    href={COMPANY.maps.googleMapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-outline map-btn"
+                  >
+                    Open in Google Maps
+                  </a>
                 </div>
-                <p className="map-address">
-                  Hitanshi EVS<br />
-                  Near Main Market, Shajapur<br />
-                  Madhya Pradesh – 465001
-                </p>
-                <a
-                  href="https://maps.google.com/?q=Shajapur,Madhya+Pradesh"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-outline map-btn"
-                >
-                  Open in Google Maps
-                </a>
+                <div className="map-grid" />
               </div>
-              {/* Decorative grid dots */}
-              <div className="map-grid" />
-            </div>
+            )}
 
             {/* Social links */}
             <div className="social-section">
               <h3 className="social-title">Follow Us</h3>
               <div className="social-links">
-                {[
-                  { icon: <FaWhatsapp />,  label: 'WhatsApp',  href: '#', c: '#25D366' },
-                  { icon: <FaFacebookF />, label: 'Facebook',  href: '#', c: '#1877F2' },
-                  { icon: <FaInstagram />, label: 'Instagram', href: '#', c: '#E1306C' },
-                  { icon: <FaPhone />,     label: 'Call Now',  href: 'tel:+917000000000', c: '#00D45E' },
-                ].map(s => (
-                  <a key={s.label} href={s.href} className="social-link" style={{ '--sc': s.c }} target="_blank" rel="noopener noreferrer">
+                {SOCIAL_LINKS.map(s => (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    className="social-link"
+                    style={{ '--sc': s.c }}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <span className="sl-icon">{s.icon}</span>
                     <span>{s.label}</span>
                   </a>

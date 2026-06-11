@@ -11,6 +11,7 @@ export const vehicles = [
     batteryType: 'Lithium-Ion 60V/28Ah',
     chargingTime: '4–5 Hours',
     accentColor: '#00D45E',
+    imageKey: 'eeva-e',
     features: [
       'Digital Speedometer',
       'LED Headlight',
@@ -37,6 +38,7 @@ export const vehicles = [
     batteryType: 'Lithium-Ion 60V/32Ah',
     chargingTime: '4–5 Hours',
     accentColor: '#0066FF',
+    imageKey: 'eeva-eco-lx',
     features: [
       'Digital Console',
       'LED DRL Lights',
@@ -64,6 +66,7 @@ export const vehicles = [
     batteryType: 'Lithium-Ion 72V/32Ah',
     chargingTime: '5–6 Hours',
     accentColor: '#A855F7',
+    imageKey: 'eeva-eco-zx',
     features: [
       'Smart Digital Display',
       'GPS Tracking',
@@ -92,6 +95,7 @@ export const vehicles = [
     batteryType: 'Lithium-Ion 72V/40Ah',
     chargingTime: '6–7 Hours',
     accentColor: '#F59E0B',
+    imageKey: 'eeva-zx-plus',
     features: [
       '7-inch TFT Digital Cluster',
       'Bluetooth Connectivity',
@@ -121,6 +125,7 @@ export const vehicles = [
     batteryType: 'Lithium-Ion 60V/30Ah',
     chargingTime: '4–5 Hours',
     accentColor: '#06B6D4',
+    imageKey: 'gracy-new',
     features: [
       'Retro-Modern Design',
       'Digital Speedometer',
@@ -148,6 +153,7 @@ export const vehicles = [
     batteryType: 'Lithium-Ion 48V/24Ah',
     chargingTime: '3–4 Hours',
     accentColor: '#EF4444',
+    imageKey: 'gracy-little',
     features: [
       'Compact & Lightweight Frame',
       'Digital Speedometer',

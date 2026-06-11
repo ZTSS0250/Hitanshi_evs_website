@@ -2,8 +2,11 @@ import { useState } from 'react'
 import { FaCalendarAlt, FaClock, FaUser, FaPhone, FaEnvelope, FaMapMarkerAlt, FaBolt, FaCheckCircle, FaArrowRight } from 'react-icons/fa'
 import { MdElectricScooter } from 'react-icons/md'
 import { vehicles } from '../data/vehicles'
+import { COMPANY } from '../config/companyInfo'
 import Toast from '../components/Toast'
 import './BookTestDrive.css'
+
+const primaryPhone = COMPANY.phones.find(p => p.primary)
 
 const TIME_SLOTS = [
   '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM',
@@ -198,10 +201,18 @@ export default function BookTestDrive() {
                 <h3>Visit Us in Shajapur</h3>
               </div>
               <ul className="btd-info-list">
-                <li><FaMapMarkerAlt /><span>Near Main Market, Shajapur – 465001, MP</span></li>
-                <li><FaPhone /><a href="tel:+917000000000">+91 70000 00000</a></li>
-                <li><FaEnvelope /><a href="mailto:info@hitanshievs.in">info@hitanshievs.in</a></li>
-                <li><FaClock /><span>Mon–Sat 9:00 AM – 7:00 PM<br />Sunday 10:00 AM – 4:00 PM</span></li>
+                <li><FaMapMarkerAlt /><span>{COMPANY.address.full}</span></li>
+                {COMPANY.phones.map(p => (
+                  <li key={p.number}><FaPhone /><a href={`tel:${p.number}`}>{p.display}</a></li>
+                ))}
+                <li><FaEnvelope /><a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a></li>
+                <li>
+                  <FaClock />
+                  <span>
+                    {COMPANY.hours.weekdays.days}: {COMPANY.hours.weekdays.time}<br />
+                    {COMPANY.hours.sunday.days}: {COMPANY.hours.sunday.time}
+                  </span>
+                </li>
               </ul>
             </div>
 
