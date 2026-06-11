@@ -36,6 +36,12 @@
   color: #fff;
   font-size: 1rem;
 }
+.logo-img {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
 .logo-text { display:flex; flex-direction:column; line-height:1.1; }
 .logo-main {
   font-family: var(--font-heading);

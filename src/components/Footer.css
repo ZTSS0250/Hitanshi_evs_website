@@ -28,6 +28,12 @@
   color: #fff;
   font-size: .95rem;
 }
+.footer-logo-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
 .footer-logo-main { font-weight:800; font-size:1.05rem; }
 .footer-logo-sub  { font-weight:700; font-size:1.05rem; background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 

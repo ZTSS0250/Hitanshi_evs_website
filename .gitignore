@@ -30,3 +30,20 @@ Thumbs.db
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Downloaded web assets accidentally saved in src/assets
+src/assets/images/vehicles/*.download
+src/assets/images/vehicles/*.html
+src/assets/images/vehicles/*.css
+src/assets/images/vehicles/*.txt
+src/assets/images/vehicles/js
+src/assets/images/vehicles/js*
+src/assets/images/vehicles/base*
+src/assets/images/vehicles/tr
+src/assets/images/vehicles/f.txt
+src/assets/images/vehicles/rs=*
+src/assets/images/vehicles/m=*
+src/assets/images/vehicles/158041877001990
+src/assets/images/vehicles/channels4_profile.jpg
+src/assets/images/vehicles/default.jpg
+src/assets/images/vehicles/Legender_files/
