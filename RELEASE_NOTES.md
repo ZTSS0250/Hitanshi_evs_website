@@ -6,6 +6,7 @@
 
 ### Features
 - Initial website launch with Home, Vehicles, Book Test Drive, and Contact Us pages
+- **hevs-002**: Email notifications via EmailJS on all three form submissions (Test Drive booking, Contact Us message, Floating Help quick query) — emails delivered to `hitanshievs@gmail.com` with full field details; loading state on submit button; user-facing error on send failure
 
 ### Internal
 - Project scaffolded with React 18 + Vite 5 + React Router 6

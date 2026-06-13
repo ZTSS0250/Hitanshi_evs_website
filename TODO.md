@@ -17,7 +17,7 @@
 
 | Task ID | Title | Type | PR | Merged |
 |---------|-------|------|----|--------|
-| — | — | — | — | — |
+| [hevs-002](backlog/done/hevs-002-feature-email-notifications.md) | Email Notifications on Form Submissions | feature | `4a5cf95` | 2026-06-13 |
 
 ---
 
