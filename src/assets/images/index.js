@@ -11,7 +11,7 @@
  *   logo/         → logo.png
  *   hero/         → hero-bike.png  (dedicated bike product shot, optional)
  *   banners/      → banner_1.png (hero showcase), banner_2.png (offer section)
- *   vehicles/     → eeva-e.jpg, eeva-eco-lx.jpg … (product shots, none yet)
+ *   vehicles/     → product shots
  *   showroom/     → showroom photos (none yet)
  *   gallery/      → customer.png, customer_2/3/5/6.png, showroom.png
  *   posters/      → poster_1.png, poster_2.png
@@ -29,10 +29,16 @@ import gCustomer2  from './gallery/customer_2.png'
 import gCustomer3  from './gallery/customer_3.png'
 import gCustomer5  from './gallery/customer_5.png'
 import gCustomer6  from './gallery/customer_6.png'
+import vEevaE      from './vehicles/eeva_e.webp'
+import vEevaEcoLX  from './vehicles/GELIO_EEVA_ECO_LX.webp'
 import vEevaZX     from './vehicles/1775646602_EEVA_ECO_ZX_Electric_Scooter.webp'
 import vEevaZXPlus from './vehicles/1775646603_Eeva_ZX+_Electric_Scooter.webp'
 import vGracyNew   from './vehicles/1780380431_Gracy.webp'
 import vGracyLittle from './vehicles/1775646603_Little_Gracy_Electric_Scooty.webp'
+import vGracyPro   from './vehicles/Gracy_pro.webp'
+import vGracyI     from './vehicles/gracy_i.webp'
+import vZelioLogix from './vehicles/Zelio_logix.jfif'
+import vZelioXmen  from './vehicles/zelio_Xmen.jfif'
 
 // ── Logo ──────────────────────────────────────────────
 export const LOGO = logo
@@ -46,12 +52,16 @@ export const OFFER_BANNER = banner2
 // ── Vehicle product images ────────────────────────────
 // Keys must match the `imageKey` field in src/data/vehicles.js
 export const VEHICLE_IMAGES = {
-  'eeva-e':       null,
-  'eeva-eco-lx':  null,
+  'eeva-e':       vEevaE,
+  'eeva-eco-lx':  vEevaEcoLX,
   'eeva-eco-zx':  vEevaZX,
   'eeva-zx-plus': vEevaZXPlus,
   'gracy-new':    vGracyNew,
   'gracy-little': vGracyLittle,
+  'gracy-pro':    vGracyPro,
+  'gracy-i':      vGracyI,
+  'zelio-logix':  vZelioLogix,
+  'zelio-xmen':   vZelioXmen,
 }
 
 // ── Showroom photos (for future showroom section) ─────
