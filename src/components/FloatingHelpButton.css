@@ -137,3 +137,10 @@
   .fab { bottom:1.25rem; right:1.25rem; padding:.7rem 1rem; }
   .fab-modal { bottom:5rem; right:1rem; }
 }
+
+.send-error {
+  color: #EF4444;
+  font-size: .85rem;
+  margin-top: .5rem;
+  text-align: center;
+}

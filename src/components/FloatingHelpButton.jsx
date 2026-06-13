@@ -1,14 +1,17 @@
 import { useState } from 'react'
 import { FaHeadset, FaTimes, FaCheckCircle } from 'react-icons/fa'
+import { sendQueryEmail } from '../utils/emailService'
 import './FloatingHelpButton.css'
 
 const INITIAL = { name: '', mobile: '', address: '' }
 
 export default function FloatingHelpButton() {
-  const [open, setOpen] = useState(false)
-  const [form, setForm] = useState(INITIAL)
-  const [errors, setErrors] = useState({})
-  const [success, setSuccess] = useState(false)
+  const [open, setOpen]           = useState(false)
+  const [form, setForm]           = useState(INITIAL)
+  const [errors, setErrors]       = useState({})
+  const [success, setSuccess]     = useState(false)
+  const [sending, setSending]     = useState(false)
+  const [sendError, setSendError] = useState('')
 
   const validate = () => {
     const e = {}
@@ -19,12 +22,22 @@ export default function FloatingHelpButton() {
     return e
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const errs = validate()
     if (Object.keys(errs).length) { setErrors(errs); return }
-    setErrors({})
-    setSuccess(true)
+
+    setSending(true)
+    setSendError('')
+    try {
+      await sendQueryEmail(form)
+      setErrors({})
+      setSuccess(true)
+    } catch {
+      setSendError('Failed to send. Please call us directly or try again.')
+    } finally {
+      setSending(false)
+    }
   }
 
   const handleClose = () => {
@@ -105,9 +118,10 @@ export default function FloatingHelpButton() {
               {errors.address && <span className="field-error">{errors.address}</span>}
             </div>
 
+            {sendError && <p className="send-error">{sendError}</p>}
             <div className="fab-actions">
-              <button type="submit" className="btn-primary" style={{ flex: 1, justifyContent: 'center' }}>
-                Submit Request
+              <button type="submit" className="btn-primary" style={{ flex: 1, justifyContent: 'center' }} disabled={sending}>
+                {sending ? 'Sending…' : 'Submit Request'}
               </button>
               <button type="button" className="btn-outline" onClick={handleClose}>
                 Cancel

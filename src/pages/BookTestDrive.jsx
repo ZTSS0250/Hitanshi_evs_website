@@ -4,6 +4,7 @@ import { MdElectricScooter } from 'react-icons/md'
 import { vehicles } from '../data/vehicles'
 import { COMPANY } from '../config/companyInfo'
 import Toast from '../components/Toast'
+import { sendTestDriveEmail } from '../utils/emailService'
 import './BookTestDrive.css'
 
 const primaryPhone = COMPANY.phones.find(p => p.primary)
@@ -39,24 +40,36 @@ function validate(form) {
 const today = new Date().toISOString().split('T')[0]
 
 export default function BookTestDrive() {
-  const [form, setForm]     = useState(INITIAL)
-  const [errors, setErrors] = useState({})
-  const [toast, setToast]   = useState(false)
+  const [form, setForm]         = useState(INITIAL)
+  const [errors, setErrors]     = useState({})
+  const [toast, setToast]       = useState(false)
   const [bookings, setBookings] = useState([])
+  const [sending, setSending]   = useState(false)
+  const [sendError, setSendError] = useState('')
 
   const onChange = (field) => (e) => {
     setForm(f => ({ ...f, [field]: e.target.value }))
     if (errors[field]) setErrors(er => ({ ...er, [field]: '' }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const errs = validate(form)
     if (Object.keys(errs).length) { setErrors(errs); return }
-    setBookings(b => [...b, { ...form, id: Date.now() }])
-    setToast(true)
-    setForm(INITIAL)
-    setErrors({})
+
+    setSending(true)
+    setSendError('')
+    try {
+      await sendTestDriveEmail(form)
+      setBookings(b => [...b, { ...form, id: Date.now() }])
+      setToast(true)
+      setForm(INITIAL)
+      setErrors({})
+    } catch {
+      setSendError('Failed to send. Please call us directly or try again.')
+    } finally {
+      setSending(false)
+    }
   }
 
   return (
@@ -185,10 +198,10 @@ export default function BookTestDrive() {
                 </div>
               </div>
 
-              <button type="submit" className="btn-primary btd-submit">
-                <FaCalendarAlt />
-                Submit Test Drive Request
+              <button type="submit" className="btn-primary btd-submit" disabled={sending}>
+                {sending ? 'Sending…' : <><FaCalendarAlt /> Submit Test Drive Request</>}
               </button>
+              {sendError && <p className="send-error">{sendError}</p>}
             </form>
           </div>
 

@@ -202,3 +202,10 @@
   .form-row { grid-template-columns:1fr; }
   .contact-form-card { padding:1.4rem; }
 }
+
+.send-error {
+  color: #EF4444;
+  font-size: .85rem;
+  margin-top: .5rem;
+  text-align: center;
+}

@@ -5,6 +5,7 @@ import {
 } from 'react-icons/fa'
 import { COMPANY } from '../config/companyInfo'
 import Toast from '../components/Toast'
+import { sendContactEmail } from '../utils/emailService'
 import './ContactUs.css'
 
 const INITIAL = { name: '', mobile: '', email: '', address: '', message: '' }
@@ -58,22 +59,34 @@ const SOCIAL_LINKS = [
 ].filter(Boolean)
 
 export default function ContactUs() {
-  const [form, setForm]     = useState(INITIAL)
-  const [errors, setErrors] = useState({})
-  const [toast, setToast]   = useState(false)
+  const [form, setForm]           = useState(INITIAL)
+  const [errors, setErrors]       = useState({})
+  const [toast, setToast]         = useState(false)
+  const [sending, setSending]     = useState(false)
+  const [sendError, setSendError] = useState('')
 
   const onChange = (field) => (e) => {
     setForm(f => ({ ...f, [field]: e.target.value }))
     if (errors[field]) setErrors(er => ({ ...er, [field]: '' }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const errs = validate(form)
     if (Object.keys(errs).length) { setErrors(errs); return }
-    setToast(true)
-    setForm(INITIAL)
-    setErrors({})
+
+    setSending(true)
+    setSendError('')
+    try {
+      await sendContactEmail(form)
+      setToast(true)
+      setForm(INITIAL)
+      setErrors({})
+    } catch {
+      setSendError('Failed to send. Please call us directly or try again.')
+    } finally {
+      setSending(false)
+    }
   }
 
   return (
@@ -227,10 +240,10 @@ export default function ContactUs() {
                 {errors.message && <span className="field-error">{errors.message}</span>}
               </div>
 
-              <button type="submit" className="btn-primary contact-submit">
-                <FaPaperPlane />
-                Send Message
+              <button type="submit" className="btn-primary contact-submit" disabled={sending}>
+                {sending ? 'Sending…' : <><FaPaperPlane /> Send Message</>}
               </button>
+              {sendError && <p className="send-error">{sendError}</p>}
             </form>
           </div>
         </div>
